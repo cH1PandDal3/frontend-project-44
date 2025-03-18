@@ -1,4 +1,3 @@
-// checkAnswer.js
 const checkAnswer = (answer, hiddenValue, name) => {
   if (answer === hiddenValue) {
     console.log('Correct!');
