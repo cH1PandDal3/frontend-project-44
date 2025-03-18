@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import game from '../src/cli.js';
+import checkAnswer from '../src/checkAnswer.js';
 
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
@@ -40,16 +41,10 @@ const playGame = () => {
     const { progression: hiddenProgression, hiddenValue } = getProgressionWithHiddenElement(prog);
     console.log(`Question: ${hiddenProgression.join(' ')}`);
     const answer = parseInt(readlineSync.question('Your answer: '), 10);
-
-    if (answer === hiddenValue) {
-      console.log('Correct!');
+    if (checkAnswer(answer, hiddenValue, name)) {
       // eslint-disable-next-line no-plusplus
       correctAnswersCount++;
     } else {
-      console.log(
-        `'${answer}' is wrong answer ;(. Correct answer was '${hiddenValue}'.`,
-      );
-      console.log(`Let's try again, ${name}!`);
       return;
     }
   }
