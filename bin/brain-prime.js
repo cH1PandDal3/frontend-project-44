@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import game from '../src/cli.js';
+import checkAnswer from '../src/checkAnswer.js';
 
 const isPrime = (number) => {
   if (number <= 1) return false;
@@ -16,6 +17,7 @@ function getRandomIntInclusive(min, max) {
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
+
 const playGame = () => {
   const name = game();
   console.log(
@@ -28,14 +30,7 @@ const playGame = () => {
     const answer = readlineSync.question('Your answer: ').toLowerCase();
 
     const correctAnswer = isPrime(number) ? 'yes' : 'no';
-
-    if (answer === correctAnswer) {
-      console.log('Correct!');
-    } else {
-      console.log(
-        `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`,
-      );
-      console.log(`Let's try again, ${name}!`);
+    if (!checkAnswer(answer, correctAnswer, name)) {
       return;
     }
   }

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import game from '../src/cli.js';
+import checkAnswer from '../src/checkAnswer.js';
 
 const isEvenGame = () => {
   const name = game();
@@ -15,15 +16,9 @@ const isEvenGame = () => {
 
     const correctAnswer = isEven(getRandomNum) ? 'yes' : 'no';
     const firstAnswer = readlineSync.question('Your answer is: ');
-
-    if (firstAnswer.toLowerCase() === correctAnswer) {
+    if (checkAnswer(firstAnswer.toLowerCase(), correctAnswer, name)) {
       sum += 1;
-      console.log('Correct!');
     } else {
-      console.log(
-        `${firstAnswer} is wrong answer ;(. Correct answer is ${correctAnswer}.`,
-      );
-      console.log(`Let's try again, ${name}`);
       return;
     }
   } while (sum < 3);

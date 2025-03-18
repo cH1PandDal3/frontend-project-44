@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import game from '../src/cli.js';
+import checkAnswer from '../src/checkAnswer.js';
 
 const name = game();
 
@@ -43,13 +44,10 @@ const calcGame = () => {
     const expression = `${num1} ${operation} ${num2}`;
     console.log(`Question: ${expression}`);
 
-    const userAnswer = readlineSync.question('Your answer: ');
+    const userAnswer = parseInt(readlineSync.question('Your answer: '), 10);
 
-    if (parseInt(userAnswer, 10) === correctAnswer) {
-      console.log('Correct!');
+    if (checkAnswer(userAnswer, correctAnswer, name)) {
       correctAnswersCount += 1;
-    } else {
-      console.log(`Incorrect! The correct answer was ${correctAnswer}.`);
     }
   }
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-
 import readlineSync from 'readline-sync';
 import { randomInt } from 'crypto';
 import game from '../src/cli.js';
+import checkAnswer from '../src/checkAnswer.js';
 
 const gcd = (a, b) => {
   while (b) {
@@ -22,18 +22,12 @@ const main = () => {
     const userAnswer = readlineSync.question('Your answer: ');
 
     const correctAnswer = gcd(num1, num2).toString();
-    if (userAnswer === correctAnswer) {
-      console.log('Correct!');
-    } else {
-      console.log(
-        `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`,
-      );
-      console.log(`Let's try again, ${name}!`);
+
+    // Используем checkAnswer для проверки
+    if (!checkAnswer(userAnswer, correctAnswer, name)) {
       return;
     }
   }
-
   console.log(`Congratulations, ${name}!`);
 };
-
 main();
