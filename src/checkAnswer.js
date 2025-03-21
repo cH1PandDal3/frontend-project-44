@@ -4,7 +4,7 @@ const checkAnswer = (answer, hiddenValue, name) => {
     return true;
   }
   console.log(
-    `Your answer: '${answer}' is wrong answer ;(. Correct answer was '${hiddenValue}'.`,
+    `'${answer}' is wrong answer ;(. Correct answer was '${hiddenValue}'.`,
   );
   console.log(`Let's try again, ${name}!`);
   return false;
