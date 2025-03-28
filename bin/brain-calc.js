@@ -1,7 +1,18 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import game from '../src/cli.js';
-import checkAnswer from '../src/checkAnswer.js';
+
+const checkAnswer = (answer, hiddenValue, name) => {
+  if (Number(answer) === hiddenValue) {
+    console.log('Correct!');
+    return true;
+  }
+  console.log(
+    `'${answer}' is wrong answer ;(. Correct answer was '${hiddenValue}'.`,
+  );
+  console.log(`Let's try again, ${name}!`);
+  return false;
+};
 
 const name = game();
 
@@ -43,17 +54,16 @@ const calcGame = () => {
     const correctAnswer = calculateExpression(num1, num2, operation);
     const expression = `${num1} ${operation} ${num2}`;
     console.log(`Question: ${expression}`);
-
-    const userAnswer = parseInt(readlineSync.question('Your answer: '), 10);
+    const userAnswer = readlineSync.question('Your answer:');
 
     if (checkAnswer(userAnswer, correctAnswer, name)) {
       correctAnswersCount += 1;
+    } else {
+      return;
     }
   }
 
-  console.log(
-    `Congratulations, ${name}! You've answered 3 questions correctly.`,
-  );
+  console.log(`Congratulations, ${name}!`);
 };
 
 calcGame();
