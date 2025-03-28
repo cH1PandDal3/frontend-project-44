@@ -3,6 +3,7 @@ import readlineSync from 'readline-sync';
 import game from '../src/cli.js';
 import checkAnswer from '../src/checkAnswer.js';
 
+console.log('What number is missing in the progression?');
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
@@ -32,8 +33,6 @@ const getProgressionWithHiddenElement = (progression) => {
 
 const playGame = () => {
   const name = game();
-
-  console.log('What number is missing in the progression?');
 
   let correctAnswersCount = 0;
   const maxCorrectAnswers = 5;
