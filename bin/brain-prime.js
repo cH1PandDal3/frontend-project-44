@@ -21,7 +21,7 @@ function getRandomIntInclusive(min, max) {
 const playGame = () => {
   const name = game();
   console.log(
-    'Answer "yes" if the given number is prime. Otherwise answer "no".',
+    'Answer "yes" if given number is prime. Otherwise answer "no".',
   );
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < 3; i++) {
