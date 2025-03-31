@@ -32,9 +32,10 @@ const getProgressionWithHiddenElement = (progression) => {
 
 const playGame = () => {
   const name = game();
+  console.log('What number is missing in the progression?');
 
   let correctAnswersCount = 0;
-  const maxCorrectAnswers = 5;
+  const maxCorrectAnswers = 3; // Reduced to 3 to match the example output
 
   while (correctAnswersCount < maxCorrectAnswers) {
     const prog = generateProgression();
